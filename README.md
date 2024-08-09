@@ -1,6 +1,6 @@
 # datamodel-code-generator
 
-This code generator creates [pydantic v1 and v2](https://docs.pydantic.dev/) model, [dataclasses.dataclass](https://docs.python.org/3/library/dataclasses.html), [typing.TypedDict](https://docs.python.org/3/library/typing.html#typing.TypedDict) 
+This code generator creates [pydantic v1 and v2](https://docs.pydantic.dev/) model, [dataclasses.dataclass](https://docs.python.org/3/library/dataclasses.html), [typing.TypedDict](https://docs.python.org/3/library/typing.html#typing.TypedDict)
 and [msgspec.Struct](https://github.com/jcrist/msgspec) from an openapi file and others.
 
 [![PyPI version](https://badge.fury.io/py/datamodel-code-generator.svg)](https://pypi.python.org/pypi/datamodel-code-generator)
@@ -14,17 +14,21 @@ and [msgspec.Struct](https://github.com/jcrist/msgspec) from an openapi file and
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json)](https://pydantic.dev)
 
 ## Help
+
 See [documentation](https://koxudaxi.github.io/datamodel-code-generator) for more details.
 
 ## Quick Installation
 
 To install `datamodel-code-generator`:
+
 ```bash
 $ pip install datamodel-code-generator
 ```
 
 ## Simple Usage
+
 You can generate models from a local file.
+
 ```bash
 $ datamodel-codegen --input api.yaml --output model.py
 ```
@@ -57,7 +61,7 @@ paths:
             type: integer
             format: int32
       responses:
-        '200':
+        "200":
           description: A paged array of pets
           headers:
             x-next:
@@ -86,7 +90,7 @@ paths:
       tags:
         - pets
       responses:
-        '201':
+        "201":
           description: Null response
         default:
           description: unexpected error
@@ -114,7 +118,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Expected response to a valid request
           content:
             application/json:
@@ -231,16 +235,19 @@ class Api(BaseModel):
 class Apis(BaseModel):
     __root__: List[Api]
 ```
+
 </details>
 
 ## Supported input types
--  OpenAPI 3 (YAML/JSON, [OpenAPI Data Type](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#data-types));
--  JSON Schema ([JSON Schema Core](http://json-schema.org/draft/2019-09/json-schema-validation.html)/[JSON Schema Validation](http://json-schema.org/draft/2019-09/json-schema-validation.html));
--  JSON/YAML/CSV Data (it will be converted to JSON Schema);
--  Python dictionary (it will be converted to JSON Schema);
--  GraphQL schema ([GraphQL Schemas and Types](https://graphql.org/learn/schema/));
+
+- OpenAPI 3 (YAML/JSON, [OpenAPI Data Type](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#data-types));
+- JSON Schema ([JSON Schema Core](http://json-schema.org/draft/2019-09/json-schema-validation.html)/[JSON Schema Validation](http://json-schema.org/draft/2019-09/json-schema-validation.html));
+- JSON/YAML/CSV Data (it will be converted to JSON Schema);
+- Python dictionary (it will be converted to JSON Schema);
+- GraphQL schema ([GraphQL Schemas and Types](https://graphql.org/learn/schema/));
 
 ## Supported output types
+
 - [pydantic](https://docs.pydantic.dev/1.10/).BaseModel;
 - [pydantic_v2](https://docs.pydantic.dev/2.0/).BaseModel;
 - [dataclasses.dataclass](https://docs.python.org/3/library/dataclasses.html);
@@ -249,6 +256,7 @@ class Apis(BaseModel):
 - Custom type from your [jinja2](https://jinja.palletsprojects.com/en/3.1.x/) template;
 
 ## Sponsors
+
 <table>
   <tr>
     <td valign="top" align="center">
@@ -273,45 +281,48 @@ class Apis(BaseModel):
 </table>
 
 ## Projects that use datamodel-code-generator
- 
-These OSS projects use datamodel-code-generator to generate many models. 
+
+These OSS projects use datamodel-code-generator to generate many models.
 See the following linked projects for real world examples and inspiration.
 
 - [airbytehq/airbyte](https://github.com/airbytehq/airbyte)
-  - *[Generate Python, Java/Kotlin, and Typescript protocol models](https://github.com/airbytehq/airbyte-protocol/tree/main/protocol-models/bin)*
+  - _[Generate Python, Java/Kotlin, and Typescript protocol models](https://github.com/airbytehq/airbyte-protocol/tree/main/protocol-models/bin)_
 - [apache/iceberg](https://github.com/apache/iceberg)
-  - *[Generate Python code](https://github.com/apache/iceberg/blob/d2e1094ee0cc6239d43f63ba5114272f59d605d2/open-api/README.md?plain=1#L39)* 
-    *[`make generate`](https://github.com/apache/iceberg/blob/d2e1094ee0cc6239d43f63ba5114272f59d605d2/open-api/Makefile#L24-L34)*
+  - _[Generate Python code](https://github.com/apache/iceberg/blob/d2e1094ee0cc6239d43f63ba5114272f59d605d2/open-api/README.md?plain=1#L39)_
+    _[`make generate`](https://github.com/apache/iceberg/blob/d2e1094ee0cc6239d43f63ba5114272f59d605d2/open-api/Makefile#L24-L34)_
 - [argoproj-labs/hera](https://github.com/argoproj-labs/hera)
-  - *[`Makefile`](https://github.com/argoproj-labs/hera/blob/c8cbf0c7a676de57469ca3d6aeacde7a5e84f8b7/Makefile#L53-L62)*
+  - _[`Makefile`](https://github.com/argoproj-labs/hera/blob/c8cbf0c7a676de57469ca3d6aeacde7a5e84f8b7/Makefile#L53-L62)_
 - [awslabs/aws-lambda-powertools-python](https://github.com/awslabs/aws-lambda-powertools-python)
-  - *Recommended for [advanced-use-cases](https://awslabs.github.io/aws-lambda-powertools-python/2.6.0/utilities/parser/#advanced-use-cases) in the official documentation*
+  - _Recommended for [advanced-use-cases](https://awslabs.github.io/aws-lambda-powertools-python/2.6.0/utilities/parser/#advanced-use-cases) in the official documentation_
 - [DataDog/integrations-core](https://github.com/DataDog/integrations-core)
-  - *[Config models](https://github.com/DataDog/integrations-core/blob/master/docs/developer/meta/config-models.md)*
+  - _[Config models](https://github.com/DataDog/integrations-core/blob/master/docs/developer/meta/config-models.md)_
 - [hashintel/hash](https://github.com/hashintel/hash)
-  - *[`codegen.sh`](https://github.com/hashintel/hash/blob/9762b1a1937e14f6b387677e4c7fe4a5f3d4a1e1/libs/%40local/hash-graph-client/python/scripts/codegen.sh#L21-L39)*
+  - _[`codegen.sh`](https://github.com/hashintel/hash/blob/9762b1a1937e14f6b387677e4c7fe4a5f3d4a1e1/libs/%40local/hash-graph-client/python/scripts/codegen.sh#L21-L39)_
 - [IBM/compliance-trestle](https://github.com/IBM/compliance-trestle)
-  - *[Building the models from the OSCAL schemas.](https://github.com/IBM/compliance-trestle/blob/develop/docs/contributing/website.md#building-the-models-from-the-oscal-schemas)*
+  - _[Building the models from the OSCAL schemas.](https://github.com/IBM/compliance-trestle/blob/develop/docs/contributing/website.md#building-the-models-from-the-oscal-schemas)_
 - [Netflix/consoleme](https://github.com/Netflix/consoleme)
-  - *[How do I generate models from the Swagger specification?](https://github.com/Netflix/consoleme/blob/master/docs/gitbook/faq.md#how-do-i-generate-models-from-the-swagger-specification)*
+  - _[How do I generate models from the Swagger specification?](https://github.com/Netflix/consoleme/blob/master/docs/gitbook/faq.md#how-do-i-generate-models-from-the-swagger-specification)_
 - [Nike-Inc/brickflow](https://github.com/Nike-Inc/brickflow)
-  - *[Code generate tools](https://github.com/Nike-Inc/brickflow/blob/e3245bf638588867b831820a6675ada76b2010bf/tools/README.md?plain=1#L8)[`./tools/gen-bundle.sh`](https://github.com/Nike-Inc/brickflow/blob/e3245bf638588867b831820a6675ada76b2010bf/tools/gen-bundle.sh#L15-L22)*
+  - _[Code generate tools](https://github.com/Nike-Inc/brickflow/blob/e3245bf638588867b831820a6675ada76b2010bf/tools/README.md?plain=1#L8)[`./tools/gen-bundle.sh`](https://github.com/Nike-Inc/brickflow/blob/e3245bf638588867b831820a6675ada76b2010bf/tools/gen-bundle.sh#L15-L22)_
 - [open-metadata/OpenMetadata](https://github.com/open-metadata/OpenMetadata)
-  - *[Makefile](https://github.com/open-metadata/OpenMetadata/blob/main/Makefile)*
+  - _[Makefile](https://github.com/open-metadata/OpenMetadata/blob/main/Makefile)_
 - [PostHog/posthog](https://github.com/PostHog/posthog)
-  - *[Generate models via `npm run`](https://github.com/PostHog/posthog/blob/e1a55b9cb38d01225224bebf8f0c1e28faa22399/package.json#L41)* 
+  - _[Generate models via `npm run`](https://github.com/PostHog/posthog/blob/e1a55b9cb38d01225224bebf8f0c1e28faa22399/package.json#L41)_
 - [SeldonIO/MLServer](https://github.com/SeldonIO/MLServer)
-  - *[generate-types.sh](https://github.com/SeldonIO/MLServer/blob/master/hack/generate-types.sh)*
+  - _[generate-types.sh](https://github.com/SeldonIO/MLServer/blob/master/hack/generate-types.sh)_
 
 ## Installation
 
 To install `datamodel-code-generator`:
+
 ```bash
 $ pip install datamodel-code-generator
 ```
 
 ### `http` extra option
+
 If you want to resolve `$ref` for remote files then you should specify `http` extra option.
+
 ```bash
 $ pip install 'datamodel-code-generator[http]'
 ```
@@ -319,23 +330,28 @@ $ pip install 'datamodel-code-generator[http]'
 ### `graphql` extra option
 
 If you want to generate data model from a GraphQL schema then you should specify `graphql` extra option.
+
 ```bash
 $ pip install 'datamodel-code-generator[graphql]'
 ```
 
 ### Docker Image
+
 The docker image is in [Docker Hub](https://hub.docker.com/r/koxudaxi/datamodel-code-generator)
+
 ```bash
 $ docker pull koxudaxi/datamodel-code-generator
 ```
 
 ## Advanced Uses
+
 You can generate models from a URL.
+
 ```bash
 $ datamodel-codegen --url https://<INPUT FILE URL> --output model.py
 ```
-This method needs the [http extra option](#http-extra-option)
 
+This method needs the [http extra option](#http-extra-option)
 
 ## All Command Options
 
@@ -428,7 +444,7 @@ Field customization:
   --use-field-description
                         Use schema description to populate field docstring
   --use-pendulum
-                        Use pendulum instead of `datetime` for `date`, 
+                        Use pendulum instead of `datetime` for `date`,
                         `datetime`, and `time` data types
 
 Model customization:
@@ -457,8 +473,8 @@ Model customization:
   --use-schema-description
                         Use schema description to populate class docstring
   --use-title-as-name   use titles as class names of models
-  --use-exact-imports   Import exact types instead of modules, for example: 
-                        `from .foo import Bar` instead of 
+  --use-exact-imports   Import exact types instead of modules, for example:
+                        `from .foo import Bar` instead of
                         `from . import foo` with `foo.Bar`
 
 Template customization:
@@ -504,12 +520,15 @@ General options:
 ```
 
 ## Related projects
+
 ### fastapi-code-generator
+
 This code generator creates [FastAPI](https://github.com/tiangolo/fastapi) app from an openapi file.
 
 [https://github.com/koxudaxi/fastapi-code-generator](https://github.com/koxudaxi/fastapi-code-generator)
 
 ### pydantic-pycharm-plugin
+
 [A JetBrains PyCharm plugin](https://plugins.jetbrains.com/plugin/12861-pydantic) for [`pydantic`](https://github.com/samuelcolvin/pydantic).
 
 [https://github.com/koxudaxi/pydantic-pycharm-plugin](https://github.com/koxudaxi/pydantic-pycharm-plugin)
@@ -520,7 +539,7 @@ This code generator creates [FastAPI](https://github.com/tiangolo/fastapi) app f
 
 ## Contributing
 
-See `docs/development-contributing.md` for how to get started!
+See [development-contributing](docs/development-contributing.md) for how to get started!
 
 ## License
 
